@@ -1,0 +1,138 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+
+  id    Int @id @default(autoincrement())
+  firstName String
+  lastName String
+  email String @unique 
+  password String
+  orders Order[]
+  review Review[]
+  cart Cart?
+  role Role @default(USER) 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Dish{
+
+  id         Int @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  image       String?
+  category    String?
+  orders      OrderItem[]
+  cartItems   CartItem[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  reviews     Review[]
+
+}
+
+model Review{
+
+  id      Int    @id @default(autoincrement())
+  rating  Int   @default(0) 
+  comment String?
+  user    User   @relation(fields: [userId], references: [id])
+  dish    Dish   @relation(fields: [dishId], references: [id])
+  userId  Int
+  dishId  Int
+
+}
+
+model Order{
+
+  id        Int          @id @default(autoincrement())
+  user      User         @relation(fields: [userId], references: [id])
+  userId    Int
+  status    OrderStatus  @default(PENDING)
+  items     OrderItem[]
+  total     Float
+  address   String
+  paymentId String
+  paymentStatus PaymentStatus @default(PENDING)
+  createdAt DateTime     @default(now())
+
+}
+
+model OrderItem{
+  id       Int   @id @default(autoincrement())
+  dish     Dish  @relation(fields: [dishId], references: [id])
+  order    Order @relation(fields: [orderId], references: [id])
+  dishId   Int
+  orderId  Int
+  quantity Int
+}
+
+model Cart {
+  id     Int        @id @default(autoincrement())
+  user   User       @relation(fields: [userId], references: [id])
+  userId Int        @unique
+  items  CartItem[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+  id       Int  @id @default(autoincrement())
+  cart     Cart @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  dish     Dish @relation(fields: [dishId], references: [id])
+  cartId   Int
+  dishId   Int
+  quantity Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([cartId, dishId])
+}
+
+enum Role{
+
+  USER
+  ADMIN
+}
+
+model Voucher {
+  id            Int      @id @default(autoincrement())
+  code          String   @unique
+  discountType  String   // PERCENTAGE or FIXED
+  discountValue Float
+  maxDiscount   Float?
+  minOrderAmount Float   @default(0)
+  usageLimit    Int?
+  usedCount     Int      @default(0)
+  active        Boolean  @default(true)
+  expiresAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+enum OrderStatus{
+  PENDING
+  CONFIRMED
+  PREPARING
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  DEMO
+  FAILED
+  REFUNDED
+}

@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@112.5,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+@import "tailwindcss";
+
+
+
+@theme {
+  /* Colors */
+  --color-primary1: #222831;
+  --color-primary2: #393E46;
+
+  --color-secondary1: #948979;
+  --color-secondary2: #DFD0B8;
+
+  --color-accent1: #D1BEB0;
+
+  /* Fonts (use only for fallback naming, won't apply directly without CSS font-family) */
+  --font-fancy: 'Inconsolata', monospace;
+  --font-main: 'Limelight', sans-serif;
+}
+
+ 
+*{
+    box-sizing: border-box;
+
+}
+
+
+.hide-scrollbar::-webkit-scrollbar{
+  display: none;
+}
+
+*::-webkit-scrollbar{
+  display: none;
+  overflow: hidden;
+}
+
+
+.hide-scrollbar{
+   -ms-overflow-style: none;  /* IE and Edge */
+   scrollbar-width: none;
+  }   
+
+
