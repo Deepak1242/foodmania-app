@@ -9,8 +9,8 @@ import checkoutAPI from '../api/checkoutAPI';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-// Stripe public key (test key)
-const stripePromise = loadStripe('pk_test_51QUtA1K0G96hgFg3OwELzFiHsGQsWzVCJPsGLzYAI8HhvL7HRRKxdHBY3jSAy92YXFrFXyAJ7BSNvRdkxQvPbFRR00mDzq5fZe');
+// Initialize Stripe with the publishable key from environment variables
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 const Checkout = () => {
   const navigate = useNavigate();

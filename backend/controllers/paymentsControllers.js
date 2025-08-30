@@ -1,15 +1,11 @@
-import Stripe from "stripe";
 import { PrismaClient } from '@prisma/client';
+import stripe from '../config/stripe.config.js';
 
 const prisma = new PrismaClient();
-
-// We'll initialize Stripe within functions to ensure env vars are loaded
 
 // Create a new payment intent
 export const createPaymentIntent = async(req,res)=>{
     try{
-        // Initialize Stripe within the function to ensure env vars are loaded
-        const stripe = new Stripe(process.env.SECRET_KEY);
         
         const { amount, userId, items, address } = req.body;
 
