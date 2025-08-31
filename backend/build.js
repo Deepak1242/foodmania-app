@@ -17,11 +17,11 @@ console.log('Starting build process...');
     console.log('Installing dependencies...');
     execSync('npm install', { stdio: 'inherit' });
 
-    // Generate Prisma client
+    // Generate Prisma client with explicit output path
     console.log('Generating Prisma client...');
-    execSync('npx prisma generate', { stdio: 'inherit' });
+    execSync('npx prisma generate --schema=./prisma/schema.prisma', { stdio: 'inherit' });
 
-    // Verify the generated client
+    // Verify the generated client in the correct location
     const prismaClientPath = path.join(process.cwd(), 'node_modules/.prisma/client');
     if (!fs.existsSync(prismaClientPath)) {
       throw new Error('Prisma client was not generated properly');

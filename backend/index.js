@@ -2,8 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import { createServer } from 'http';
 import dotenv from 'dotenv';
-import { PrismaClient } from '@prisma/client';
 import cookieParser from 'cookie-parser';
+
+// Load environment variables
+dotenv.config();
+
+// Import the centralized Prisma client
+import './config/prisma.js';
 
 
 
