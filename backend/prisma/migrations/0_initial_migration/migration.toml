@@ -1,0 +1,3 @@
+# The baseline migration for an existing database
+# This migration represents the current state of your database
+migration_name = "0_initial_migration"
