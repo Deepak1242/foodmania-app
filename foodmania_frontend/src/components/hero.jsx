@@ -112,13 +112,13 @@ const Hero = () => {
     >
       {/* Text Content */}
       <div className="w-fit z-10 px-4 md:px-0">
-        <div className="text-4xl md:text-6xl lg:text-8xl font-main">
+        <div className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-main">
           <h1 className="tracking-widest mx-[1vw] text-amber-400">CONQUER</h1>
-          <h1 className="tracking-widest mx-[2vw] md:mx-[6.3vw] text-amber-400">HUNGER</h1>
-          <h1 className="tracking-widest mx-[4vw] md:mx-[12.1vw] text-amber-400">RULE THE</h1>
+          <h1 className="tracking-widest mx-[2vw] sm:mx-[3vw] md:mx-[6.3vw] text-amber-400">HUNGER</h1>
+          <h1 className="tracking-widest mx-[3vw] sm:mx-[6vw] md:mx-[12.1vw] text-amber-400">RULE THE</h1>
           <h1
             ref={textRef}
-            className="tracking-widest mx-[6vw] md:mx-[16.9vw] text-amber-400 transition-colors duration-500"
+            className="tracking-widest mx-[4vw] sm:mx-[8vw] md:mx-[16.9vw] text-amber-400 transition-colors duration-500"
           >
             FLAVOUR
           </h1>
@@ -147,7 +147,7 @@ const Hero = () => {
       </div>
 
       {/* Image Layers */}
-      <div className="absolute top-[10rem] md:top-[15rem] right-4 md:left-[65%] w-[300px] md:w-[650px] h-[300px] md:h-[650px] z-0">
+      <div className="absolute top-[8rem] sm:top-[10rem] md:top-[15rem] right-2 sm:right-4 md:left-[65%] w-[200px] sm:w-[300px] md:w-[650px] h-[200px] sm:h-[300px] md:h-[650px] z-0">
         <div
           ref={frontImageRef}
           className="absolute inset-0 bg-cover bg-center opacity-100 rounded-full md:rounded-none will-change-transform"

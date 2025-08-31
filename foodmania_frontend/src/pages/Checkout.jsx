@@ -10,7 +10,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 // Initialize Stripe with the publishable key from environment variables
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_demo_key_for_development');
 
 const Checkout = () => {
   const navigate = useNavigate();

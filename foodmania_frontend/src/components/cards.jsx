@@ -71,14 +71,14 @@ const Cards = () => {
   ];
 
   return (
-    <div ref={cardsRef} className='py-20 px-8 bg-gradient-to-b from-primary1 to-primary2'>
+    <div ref={cardsRef} className='py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-primary1 to-primary2'>
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-6xl font-main text-amber-400 mb-4">EXPLORE FLAVORS</h2>
-          <p className="text-xl text-secondary2 font-fancy">Discover your next favorite meal</p>
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-main text-amber-400 mb-2 sm:mb-3 md:mb-4">EXPLORE FLAVORS</h2>
+          <p className="text-base sm:text-lg md:text-xl text-secondary2 font-fancy">Discover your next favorite meal</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {foodCategories.map((category) => (
             <div
               key={category.id}
@@ -90,7 +90,7 @@ const Cards = () => {
                 <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}></div>
                 
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden rounded-t-3xl">
+                <div className="relative h-40 sm:h-44 md:h-48 overflow-hidden rounded-t-3xl">
                   <img 
                     src={category.image} 
                     alt={category.title}
@@ -100,9 +100,9 @@ const Cards = () => {
                 </div>
                 
                 {/* Content */}
-                <div className="p-6 relative z-10 flex flex-col justify-between flex-grow">
+                <div className="p-4 sm:p-5 md:p-6 relative z-10 flex flex-col justify-between flex-grow">
                   <div>
-                    <h3 className="text-2xl font-main text-amber-300 mb-2 group-hover:text-amber-200 transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-main text-amber-300 mb-2 group-hover:text-amber-200 transition-colors">
                       {category.title}
                     </h3>
                     <p className="text-secondary2 font-fancy text-sm leading-relaxed mb-4">
@@ -121,11 +121,10 @@ const Cards = () => {
         </div>
         
         {/* Call to action */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-8 sm:mt-12 md:mt-16">
           <button 
             onClick={() => navigate('/dishes')}
-            className="bg-amber-400 text-primary1 font-bold py-4 px-8 rounded-xl hover:bg-amber-300 transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-amber-400/25"
-          >
+            className="bg-amber-400 text-primary1 font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-xl hover:bg-amber-300 transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-amber-400/25 text-sm sm:text-base">
             VIEW ALL DISHES
           </button>
         </div>

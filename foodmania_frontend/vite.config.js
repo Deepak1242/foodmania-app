@@ -12,9 +12,14 @@ export default defineConfig(({ mode }) => {
       react(),
       tailwindcss(),
     ],
-    base: '/', // Set the base URL for the application
+    base: '/', // Use root-relative paths for Netlify
     define: {
-      'process.env': env, // Pass through all environment variables
+      'process.env': Object.keys(env).reduce((acc, key) => {
+        if (key.startsWith('VITE_')) {
+          acc[key] = JSON.stringify(env[key]);
+        }
+        return acc;
+      }, {}),
     },
     server: {
       port: 3000,

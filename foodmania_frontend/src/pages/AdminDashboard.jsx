@@ -89,34 +89,35 @@ const AdminDashboard = () => {
   };
 
   const StatCard = ({ icon: Icon, title, value, color, trend }) => (
-    <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:from-white/15 hover:to-white/10 transition-all duration-300">
-      <div className="flex items-center justify-between mb-4">
-        <div className={`p-3 rounded-xl bg-gradient-to-br ${color}`}>
-          <Icon className="text-white text-xl" />
+    <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:from-white/15 hover:to-white/10 transition-all duration-300">
+      <div className="flex items-center justify-between mb-3 sm:mb-4">
+        <div className={`p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br ${color}`}>
+          <Icon className="text-white text-lg sm:text-xl" />
         </div>
         {trend && (
-          <div className="flex items-center text-green-400 text-sm">
+          <div className="flex items-center text-green-400 text-xs sm:text-sm">
             <FaChartLine className="mr-1" />
             +{trend}%
           </div>
         )}
       </div>
-      <h3 className="text-2xl font-bold text-white mb-1">{value}</h3>
-      <p className="text-gray-300 text-sm">{title}</p>
+      <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">{value}</h3>
+      <p className="text-gray-300 text-xs sm:text-sm">{title}</p>
     </div>
   );
 
   const TabButton = ({ id, label, icon: Icon, active, onClick }) => (
     <button
       onClick={() => onClick(id)}
-      className={`flex items-center gap-3 px-6 py-3 rounded-xl transition-all duration-300 ${
+      className={`flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl transition-all duration-300 text-sm sm:text-base ${
         active
           ? 'bg-gradient-to-r from-yellow-400 to-amber-400 text-black font-semibold'
           : 'text-gray-300 hover:text-white hover:bg-white/10'
       }`}
     >
-      <Icon className="text-lg" />
-      {label}
+      <Icon className="text-base sm:text-lg" />
+      <span className="hidden sm:inline">{label}</span>
+      <span className="sm:hidden">{label.slice(0, 3)}</span>
     </button>
   );
 
@@ -137,19 +138,19 @@ const AdminDashboard = () => {
       <div className="relative z-10 min-h-screen">
         <Navbar variant="cart" />
         
-        <div className="container mx-auto px-4 py-8 mt-20 max-w-7xl">
+        <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 mt-16 sm:mt-20 max-w-7xl">
           {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-white mb-2">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
               <span className="bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent">
                 Admin Dashboard
               </span>
             </h1>
-            <p className="text-gray-300 text-lg">Welcome back, {user?.firstName || 'Admin'}!</p>
+            <p className="text-gray-300 text-base sm:text-lg">Welcome back, {user?.firstName || 'Admin'}!</p>
           </div>
 
           {/* Navigation Tabs */}
-          <div className="flex flex-wrap gap-4 mb-8 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-2">
+          <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-lg border border-white/10 rounded-xl sm:rounded-2xl p-2">
             <TabButton
               id="overview"
               label="Overview"
@@ -191,7 +192,7 @@ const AdminDashboard = () => {
           {activeTab === 'overview' && analytics && (
             <div className="space-y-8">
               {/* Stats Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <StatCard
                   icon={FaUsers}
                   title="Total Users"
@@ -226,8 +227,8 @@ const AdminDashboard = () => {
               <SalesChart />
               
               {/* Recent Orders */}
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
-                <h3 className="text-xl font-bold text-white mb-4">Recent Orders</h3>
+              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">Recent Orders</h3>
                 <div className="space-y-3">
                   {analytics.recentOrders?.map((order) => (
                     <div key={order.id} className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
@@ -253,9 +254,9 @@ const AdminDashboard = () => {
               </div>
 
               {/* Top Dishes */}
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
-                <h3 className="text-xl font-bold text-white mb-4">Top Dishes</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">Top Dishes</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                   {analytics.topDishes?.map((dish, index) => (
                     <div key={index} className="flex items-center p-4 bg-white/5 rounded-xl">
                       <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-400 rounded-lg flex items-center justify-center text-black font-bold mr-4">
