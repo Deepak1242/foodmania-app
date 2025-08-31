@@ -15,7 +15,9 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate deploy",
     "postinstall": "npm run prisma:generate",
-    "render-build": "npm install && npm run build"
+    "render-build": "npm install && npm run build",
+    "vercel-build": "prisma generate && prisma migrate deploy && npm run build",
+    "vercel-dev": "prisma generate && npm run dev"
   },
   "dependencies": {
     "@prisma/client": "^6.9.0",
